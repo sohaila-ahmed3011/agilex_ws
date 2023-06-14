@@ -503,7 +503,7 @@ void GlobalMapperRos::Publish(const ros::TimerEvent& event)
 
     // unknown_grid_pub_.publish(unknown_pointcloud_msg);
 
-    std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
+    // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
     occ_grid_pub_.publish(occ_pointcloud_msg);
   }
 
@@ -725,11 +725,11 @@ void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr&
       point.x = x;
       point.y = y;
       point.z = z;
-      // point.intensity = I;
-      point.intensity = 3.4;
+      point.intensity = I;
+      // point.intensity = 3.4;
       cloud.push_back(point);
        }
-  std::cout<< "---------------------------" << cloud.size() << std::endl;
+  // std::cout<< "---------------------------" << cloud.size() << std::endl;
   const std::string target_frame = params_.global_frame;
   geometry_msgs::TransformStamped transform_stamped;
   try
@@ -752,15 +752,16 @@ void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr&
   world_cloud.sensor_origin_ << transform_stamped.transform.translation.x, transform_stamped.transform.translation.y,
       transform_stamped.transform.translation.z, 1;
 
-  std::cout << "--------world_cloud-------->"<< world_cloud.size() << std::endl;
+  // std::cout << "--------world_cloud-------->"<< world_cloud.size() << std::endl;
 
   global_mapper_ptr_->PushPointCloud(world_cloud.makeShared());
 
+  /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
   sensor_msgs::PointCloud2 occ_pointcloud_msg;
   pcl::toROSMsg(world_cloud, occ_pointcloud_msg);
-  std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
+  // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
   occ_grid_pub_.publish(occ_pointcloud_msg);
-
+  ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   tstampLastPclFused_ = (*velodyne_msg).header.stamp;
 }
