@@ -1,0 +1,5 @@
+[  0%] Built target fla_msgs_generate_messages_cpp
+[35m[1mScanning dependencies of target depthmap_filter[0m
+[ 50%] [32mBuilding CXX object CMakeFiles/depthmap_filter.dir/src/depthmap_filter.cpp.o[0m
+[100%] [32m[1mLinking CXX shared library /home/ros/agile_x/devel/.private/depthmap_filter/lib/libdepthmap_filter.so[0m
+[100%] Built target depthmap_filter

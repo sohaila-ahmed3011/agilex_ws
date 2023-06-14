@@ -8,6 +8,8 @@
 
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/ros/agile_x/devel/.private/agilex_scout_mini:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/ros/agile_x/devel/.private/agilex_scout_mini/lib:$LD_LIBRARY_PATH"
+export PKG_CONFIG_PATH="/home/ros/agile_x/devel/.private/agilex_scout_mini/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/ros/agile_x/build/agilex_scout_mini'
 export ROSLISP_PACKAGE_DIRECTORIES="/home/ros/agile_x/devel/.private/agilex_scout_mini/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
 export ROS_PACKAGE_PATH="/home/ros/agile_x/src/agilex_scout_mini:$ROS_PACKAGE_PATH"

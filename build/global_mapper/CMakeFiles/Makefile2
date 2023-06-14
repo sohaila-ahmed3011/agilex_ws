@@ -100,8 +100,8 @@ clean: CMakeFiles/occupancy_grid.dir/clean
 # Target rules for target CMakeFiles/cost_grid.dir
 
 # All Build rule for target.
-CMakeFiles/cost_grid.dir/all: CMakeFiles/occupancy_grid.dir/all
 CMakeFiles/cost_grid.dir/all: CMakeFiles/distance_grid.dir/all
+CMakeFiles/cost_grid.dir/all: CMakeFiles/occupancy_grid.dir/all
 	$(MAKE) -f CMakeFiles/cost_grid.dir/build.make CMakeFiles/cost_grid.dir/depend
 	$(MAKE) -f CMakeFiles/cost_grid.dir/build.make CMakeFiles/cost_grid.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ros/agile_x/build/global_mapper/CMakeFiles --progress-num=1,2 "Built target cost_grid"
@@ -138,9 +138,9 @@ clean: CMakeFiles/cost_grid.dir/clean
 # Target rules for target CMakeFiles/global_mapper.dir
 
 # All Build rule for target.
+CMakeFiles/global_mapper.dir/all: CMakeFiles/distance_grid.dir/all
 CMakeFiles/global_mapper.dir/all: CMakeFiles/cost_grid.dir/all
 CMakeFiles/global_mapper.dir/all: CMakeFiles/occupancy_grid.dir/all
-CMakeFiles/global_mapper.dir/all: CMakeFiles/distance_grid.dir/all
 	$(MAKE) -f CMakeFiles/global_mapper.dir/build.make CMakeFiles/global_mapper.dir/depend
 	$(MAKE) -f CMakeFiles/global_mapper.dir/build.make CMakeFiles/global_mapper.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ros/agile_x/build/global_mapper/CMakeFiles --progress-num=5,6 "Built target global_mapper"
@@ -214,10 +214,10 @@ clean: CMakeFiles/distance_grid.dir/clean
 # Target rules for target CMakeFiles/global_mapper_tests.dir
 
 # All Build rule for target.
-CMakeFiles/global_mapper_tests.dir/all: CMakeFiles/cost_grid.dir/all
-CMakeFiles/global_mapper_tests.dir/all: CMakeFiles/occupancy_grid.dir/all
 CMakeFiles/global_mapper_tests.dir/all: CMakeFiles/distance_grid.dir/all
+CMakeFiles/global_mapper_tests.dir/all: CMakeFiles/cost_grid.dir/all
 CMakeFiles/global_mapper_tests.dir/all: CMakeFiles/global_mapper.dir/all
+CMakeFiles/global_mapper_tests.dir/all: CMakeFiles/occupancy_grid.dir/all
 	$(MAKE) -f CMakeFiles/global_mapper_tests.dir/build.make CMakeFiles/global_mapper_tests.dir/depend
 	$(MAKE) -f CMakeFiles/global_mapper_tests.dir/build.make CMakeFiles/global_mapper_tests.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/ros/agile_x/build/global_mapper/CMakeFiles --progress-num=7,8,9,10,11,12 "Built target global_mapper_tests"
