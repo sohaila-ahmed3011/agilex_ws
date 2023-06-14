@@ -1,0 +1,44 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper/src/distance_grid/distance_grid.cc
+distance_grid/distance_grid.h
+/home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper/src/distance_grid/distance_grid/distance_grid.h
+
+/home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper/src/distance_grid/distance_grid.h
+cstdint
+-
+vector
+-
+iostream
+-
+queue
+-
+set
+-
+voxel_grid/voxel_grid.h
+/home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper/src/distance_grid/voxel_grid/voxel_grid.h
+
+/home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper/src/voxel_grid/voxel_grid.h
+stdio.h
+-
+stdint.h
+-
+stdlib.h
+-
+math.h
+-
+assert.h
+-
+vector
+-
+cstring
+-
+iostream
+-
+

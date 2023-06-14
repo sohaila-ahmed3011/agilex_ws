@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/decomp_test_node/lib/pkgconfig/decomp_test_node.pc

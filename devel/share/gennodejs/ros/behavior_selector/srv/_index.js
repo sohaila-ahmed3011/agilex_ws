@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/behavior_selector/share/gennodejs/ros/behavior_selector/srv/_index.js

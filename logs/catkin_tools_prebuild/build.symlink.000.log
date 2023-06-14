@@ -1,0 +1,12 @@
+Symlinking /home/ros/agile_x/devel/./env.sh
+Symlinking /home/ros/agile_x/devel/./local_setup.sh
+Symlinking /home/ros/agile_x/devel/./setup.sh
+Symlinking /home/ros/agile_x/devel/./local_setup.bash
+Symlinking /home/ros/agile_x/devel/./local_setup.zsh
+Symlinking /home/ros/agile_x/devel/./setup.zsh
+Symlinking /home/ros/agile_x/devel/./setup.bash
+Symlinking /home/ros/agile_x/devel/./cmake.lock
+Symlinking /home/ros/agile_x/devel/./_setup_util.py
+Symlinking /home/ros/agile_x/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig.cmake
+Symlinking /home/ros/agile_x/devel/share/catkin_tools_prebuild/cmake/catkin_tools_prebuildConfig-version.cmake
+Symlinking /home/ros/agile_x/devel/lib/pkgconfig/catkin_tools_prebuild.pc

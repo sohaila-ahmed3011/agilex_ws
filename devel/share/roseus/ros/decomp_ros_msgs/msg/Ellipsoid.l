@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/decomp_ros_msgs/share/roseus/ros/decomp_ros_msgs/msg/Ellipsoid.l

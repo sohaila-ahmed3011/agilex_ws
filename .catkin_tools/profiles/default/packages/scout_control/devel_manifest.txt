@@ -1,0 +1,5 @@
+agilex_scout_sim/scout_control
+/home/ros/agile_x/devel/.private/scout_control/cmake.lock /home/ros/agile_x/devel/./cmake.lock
+/home/ros/agile_x/devel/.private/scout_control/share/scout_control/cmake/scout_controlConfig-version.cmake /home/ros/agile_x/devel/share/scout_control/cmake/scout_controlConfig-version.cmake
+/home/ros/agile_x/devel/.private/scout_control/share/scout_control/cmake/scout_controlConfig.cmake /home/ros/agile_x/devel/share/scout_control/cmake/scout_controlConfig.cmake
+/home/ros/agile_x/devel/.private/scout_control/lib/pkgconfig/scout_control.pc /home/ros/agile_x/devel/lib/pkgconfig/scout_control.pc

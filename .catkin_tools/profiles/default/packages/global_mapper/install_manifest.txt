@@ -1,0 +1,14 @@
+/home/ros/agile_x/devel/lib/cmake/global_mapper/global_mapperConfig.cmake
+/home/ros/agile_x/devel/lib/cmake/global_mapper/global_mapperConfigVersion.cmake
+/home/ros/agile_x/devel/lib/libglobal_mapper.so
+/home/ros/agile_x/devel/include/global_mapper/planning_grids.h
+/home/ros/agile_x/devel/include/global_mapper/params.h
+/home/ros/agile_x/devel/include/global_mapper/global_mapper.h
+/home/ros/agile_x/devel/lib/liboccupancy_grid.so
+/home/ros/agile_x/devel/include/occupancy_grid/occupancy_grid.h
+/home/ros/agile_x/devel/lib/libdistance_grid.so
+/home/ros/agile_x/devel/include/distance_grid/distance_grid.h
+/home/ros/agile_x/devel/lib/libcost_grid.so
+/home/ros/agile_x/devel/include/cost_grid/cost_grid.h
+/home/ros/agile_x/devel/include/voxel_grid/voxel_grid.h
+/home/ros/agile_x/devel/bin/global_mapper_tests

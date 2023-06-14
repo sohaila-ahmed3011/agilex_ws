@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/global_mapper_ros/share/gennodejs/ros/global_mapper_ros/msg/PlanningGrids.js

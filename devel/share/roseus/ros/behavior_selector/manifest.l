@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/behavior_selector/share/roseus/ros/behavior_selector/manifest.l

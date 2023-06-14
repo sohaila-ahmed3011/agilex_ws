@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<launch>
+    <arg name="ns"        default="JA01"/>
+    <arg name="world_name"     default="empty.world"/>
+    <arg name="gui"       default="true"/>
+    <arg name="rviz"      default="false"/>  
+     
+  <!-- Start Gazebo. -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="world_name" value="$(find scout_gazebo_sim)/worlds/$(arg world_name)"/>
+      	<arg name="use_sim_time" value="true"/>
+        <arg name="gui"          value="$(arg gui)"/>
+    </include>
+    
+  <!-- Spawn the robot. -->
+    <include file="$(find scout_gazebo_sim)/launch/spawn_scout_mini.launch">
+    </include>
+    
+  <!-- View in RVIZ. -->        
+  <group if="$(arg rviz)">
+    <node name="rviz" pkg="rviz" type="rviz" ns="$(arg ns)" args="-d $(find scout_description)/rviz/model_display.rviz" >
+      <!-- <remap from="/move_base_simple/goal" to="/$(arg ns)/goal"/> -->
+    </node>
+  </group>
+
+   <!-- "Remap" to obtain JA01 and JA01/velodyne frames-->    
+    <node pkg="tf" type="static_transform_publisher" name="odom_to_base_link" args="0 0 0.03 0 0 0 odom base_link 10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_to_velodyne" args="0 0 0.03 0 0 0 base_link velodyne 10" />
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_world" args="0 0 0 0 0 0 base_link world 1" />
+    <node pkg="tf" type="static_transform_publisher" name="world_to_JA01" args="0 0 0 0 0 0 base_link $(arg ns) 1" />
+    
+   <!-- Use ground truth from gazebo (note that all the nodes of nav.launch should be set to false if using this)-->
+    <node ns="$(arg ns)" name="ground_truth_to_tf" pkg="message_to_tf" type="message_to_tf" output="screen">
+      <param name="odometry_topic" value="ground_truth/state" />
+      <param name="frame_id" value="/world" />
+      <param name="tf_prefix" value="$(arg ns)" />
+    </node>   
+   
+</launch>

@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/snapstack_msgs/lib/pkgconfig/snapstack_msgs.pc

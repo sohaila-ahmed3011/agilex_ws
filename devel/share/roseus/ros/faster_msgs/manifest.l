@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/faster_msgs/share/roseus/ros/faster_msgs/manifest.l

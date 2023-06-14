@@ -1,0 +1,2 @@
+set(snapstack_msgs_MESSAGE_FILES "/home/ros/agile_x/src/snapstack_msgs/msg/ControlLog.msg;/home/ros/agile_x/src/snapstack_msgs/msg/AttitudeCommand.msg;/home/ros/agile_x/src/snapstack_msgs/msg/Goal.msg;/home/ros/agile_x/src/snapstack_msgs/msg/QuadFlightMode.msg;/home/ros/agile_x/src/snapstack_msgs/msg/State.msg;/home/ros/agile_x/src/snapstack_msgs/msg/CommAge.msg;/home/ros/agile_x/src/snapstack_msgs/msg/IMU.msg;/home/ros/agile_x/src/snapstack_msgs/msg/SMCData.msg;/home/ros/agile_x/src/snapstack_msgs/msg/Motors.msg")
+set(snapstack_msgs_SERVICE_FILES "")

@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/global_mapper_ros/share/global_mapper_ros/cmake/global_mapper_rosConfig.cmake

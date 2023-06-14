@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ros/agile_x/devel/.private/global_mapper_ros/setup.sh

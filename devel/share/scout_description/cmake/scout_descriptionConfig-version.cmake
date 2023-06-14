@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/scout_description/share/scout_description/cmake/scout_descriptionConfig-version.cmake

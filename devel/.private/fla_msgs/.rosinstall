@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/ros/agile_x/devel/.private/fla_msgs/setup.sh

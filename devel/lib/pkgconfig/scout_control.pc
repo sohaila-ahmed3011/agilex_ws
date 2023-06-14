@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/scout_control/lib/pkgconfig/scout_control.pc

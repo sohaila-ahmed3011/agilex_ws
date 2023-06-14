@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/snapstack_msgs/share/snapstack_msgs/cmake/snapstack_msgs-msg-extras.cmake

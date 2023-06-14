@@ -1,0 +1,8 @@
+prefix=/home/ros/agile_x/devel/.private/faster
+
+Name: faster
+Description: Description of faster
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

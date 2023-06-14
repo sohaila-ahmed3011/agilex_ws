@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/faster_msgs/share/common-lisp/ros/faster_msgs/msg/Mode.lisp

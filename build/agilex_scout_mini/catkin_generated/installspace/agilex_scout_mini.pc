@@ -1,0 +1,8 @@
+prefix=/home/ros/agile_x/install
+
+Name: agilex_scout_mini
+Description: Description of agilex_scout_mini
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

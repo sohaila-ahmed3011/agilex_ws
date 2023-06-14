@@ -1,0 +1,6 @@
+devel_space: /home/ros/agile_x/devel
+install: false
+install_space: /home/ros/agile_x/install
+profile: default
+source_space: /home/ros/agile_x/src
+workspace: /home/ros/agile_x

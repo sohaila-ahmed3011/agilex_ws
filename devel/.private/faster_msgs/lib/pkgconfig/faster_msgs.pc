@@ -1,0 +1,8 @@
+prefix=/home/ros/agile_x/devel/.private/faster_msgs
+
+Name: faster_msgs
+Description: Description of faster_msgs
+Version: 0.0.0
+Cflags: -I/home/ros/agile_x/devel/.private/faster_msgs/include
+Libs: -L${prefix}/lib 
+Requires: message_runtime

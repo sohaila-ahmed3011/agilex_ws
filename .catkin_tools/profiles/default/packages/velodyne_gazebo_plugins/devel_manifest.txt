@@ -1,0 +1,7 @@
+velodyne_simulator/velodyne_gazebo_plugins
+/home/ros/agile_x/devel/.private/velodyne_gazebo_plugins/cmake.lock /home/ros/agile_x/devel/./cmake.lock
+/home/ros/agile_x/devel/.private/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/cmake/velodyne_gazebo_pluginsConfig-version.cmake /home/ros/agile_x/devel/share/velodyne_gazebo_plugins/cmake/velodyne_gazebo_pluginsConfig-version.cmake
+/home/ros/agile_x/devel/.private/velodyne_gazebo_plugins/share/velodyne_gazebo_plugins/cmake/velodyne_gazebo_pluginsConfig.cmake /home/ros/agile_x/devel/share/velodyne_gazebo_plugins/cmake/velodyne_gazebo_pluginsConfig.cmake
+/home/ros/agile_x/devel/.private/velodyne_gazebo_plugins/lib/libgazebo_ros_velodyne_laser.so /home/ros/agile_x/devel/lib/libgazebo_ros_velodyne_laser.so
+/home/ros/agile_x/devel/.private/velodyne_gazebo_plugins/lib/libgazebo_ros_velodyne_gpu_laser.so /home/ros/agile_x/devel/lib/libgazebo_ros_velodyne_gpu_laser.so
+/home/ros/agile_x/devel/.private/velodyne_gazebo_plugins/lib/pkgconfig/velodyne_gazebo_plugins.pc /home/ros/agile_x/devel/lib/pkgconfig/velodyne_gazebo_plugins.pc

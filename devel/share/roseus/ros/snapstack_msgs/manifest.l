@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/snapstack_msgs/share/roseus/ros/snapstack_msgs/manifest.l

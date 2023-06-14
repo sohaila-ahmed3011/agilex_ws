@@ -1,0 +1,1 @@
+/home/ros/agile_x/devel/.private/agilex_scout_mini/share/agilex_scout_mini/cmake/agilex_scout_miniConfig-version.cmake
