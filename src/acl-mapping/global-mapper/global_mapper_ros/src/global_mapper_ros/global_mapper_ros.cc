@@ -497,14 +497,16 @@ void GlobalMapperRos::Publish(const ros::TimerEvent& event)
   if (publish_occupancy_grid_)
   {
     sensor_msgs::PointCloud2 occ_pointcloud_msg;
-    // PopulateOccupancyPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
-
-    PopulateUnknownPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
-
-    // unknown_grid_pub_.publish(unknown_pointcloud_msg);
-
-    // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
+    PopulateOccupancyPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
     occ_grid_pub_.publish(occ_pointcloud_msg);
+
+    /////////////////////////////////////////////////////////////////////////////////////////////////
+    // sensor_msgs::PointCloud2 occ_pointcloud_msg;
+    // PopulateUnknownPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
+    // // unknown_grid_pub_.publish(unknown_pointcloud_msg);
+    // // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
+    // occ_grid_pub_.publish(occ_pointcloud_msg);
+    ////////////////////////////////////////////////////////////////////////////////////////////////
   }
 
   if (publish_unknown_grid_)
@@ -580,121 +582,6 @@ void GlobalMapperRos::GoalCallback(const geometry_msgs::PoseStamped::ConstPtr& g
   }
   global_mapper_ptr_->SetGoal(xyz);
 }
-
-// void GlobalMapperRos::DepthImageCallback(const sensor_msgs::Image::ConstPtr& image_msg,
-//                                          const sensor_msgs::CameraInfo::ConstPtr& camera_info_msg)
-// {
-//   ROS_INFO("Mapper:: DepthImage received");
-//   // std::cout << image_msg->header.stamp << std::endl;
-
-//   if (!got_depth_image_)
-//   {
-//     got_depth_image_ = true;
-//   }
-//   float cx, cy, fx, fy;
-//   int binning_x = std::max<uint32_t>(camera_info_msg->binning_x, 1);
-//   int binning_y = std::max<uint32_t>(camera_info_msg->binning_y, 1);
-
-//   fx = camera_info_msg->K[0] / binning_x;
-//   fy = camera_info_msg->K[4] / binning_y;
-//   cx = camera_info_msg->K[2] / binning_x;
-//   cy = camera_info_msg->K[5] / binning_y;
-
-//   cv_bridge::CvImageConstPtr depth_ptr = cv_bridge::toCvCopy(image_msg, "32FC1");
-//   cv::Mat1f depthmap(depth_ptr->image);
-
-//   if (image_msg->encoding == "16UC1")
-//   {
-//     depthmap /= 1000;  // Convert to meters.
-//   }
-
-//   int height = depthmap.rows;
-//   int width = depthmap.cols;
-//   pcl::PointCloud<pcl::PointXYZI> cloud;
-
-//   float x_const = 1.0 / fx;
-//   float y_const = 1.0 / fy;
-
-//   // std::cout << "Processing DepthImage" << std::endl;
-
-//   // Each pixel can have one of these three values: Finite Number, Nan, Inf.
-//   // Nan and Inf are NOT finite.
-
-//   // TODO: Right now the mapper clears the unknown space when there is a part of the depth image with NaN due to the
-//   // fact that there is an object is very near the camera. That's why I've put in the asus_camera.urdf.xacro
-//   // clip/near=0.06 (instead of clip/near>>0 as it was before). But the problem is that I don't know if there is a way
-//   // to distinguish this case from the case when there is a pixel=NaN that is very far from the camera but that the
-//   // camera hasn't been able to match it
-//   for (int i = 0; i < height; i = i + (params_.skip + 1))
-//   {
-//     for (int j = 0; j < width; j = j + (params_.skip + 1))
-//     {
-//       pcl::PointXYZI point;
-//       float depth = depthmap(i, j);
-//       // if(depth<0.001){
-//       //   depth=std::nan("");
-//       //  }
-//       bool finite = std::isfinite(depth);  // False for Nan and Inf
-//       // bool NaN = (depth != depth);
-//       bool NaN = (std::isnan(depth));  // True only for finite
-
-//       // std::cout<<"I'm Nan= "<<NaN<<std::endl;
-//       // std::cout<<"Value= "<<depth<<std::endl;
-//       if (!finite && depth < 0)
-//       {
-//         continue;
-//       }
-
-//       if (finite)
-//       {
-//         if (depth > params_.depth_max)
-//         {
-//           point.z = depth;
-//           point.intensity = nan("");
-//         }
-//         else
-//         {
-//           point.z = depth;
-//           point.intensity = 0;
-//         }
-//       }
-//       else
-//       {  // Nan and Inf
-//         point.z = clear_unknown_distance_;
-//         point.intensity = depth;
-//       }
-//       point.x = (j - cx) * point.z * x_const;
-//       point.y = (i - cy) * point.z * y_const;
-//       cloud.push_back(point);
-//     }
-//   }
-
-//   const std::string target_frame = params_.global_frame;
-//   geometry_msgs::TransformStamped transform_stamped;
-//   try
-//   {
-//     transform_stamped = tf_buffer_.lookupTransform(target_frame, image_msg->header.frame_id,
-//                                                    ros::Time(image_msg->header.stamp), ros::Duration(0.12));
-//   }
-//   catch (tf2::TransformException& ex)
-//   {
-//     ROS_WARN("[GlobalMapperRos::DepthImageCallback] %s", ex.what());
-//     return;
-//   }
-
-//   Eigen::Affine3d eigen_transform;
-//   eigen_transform = tf2::transformToEigen(transform_stamped);
-
-//   pcl::PointCloud<pcl::PointXYZI> world_cloud;
-//   pcl::transformPointCloud(cloud, world_cloud, eigen_transform);
-
-//   world_cloud.sensor_origin_ << transform_stamped.transform.translation.x, transform_stamped.transform.translation.y,
-//       transform_stamped.transform.translation.z, 1;
-
-//   global_mapper_ptr_->PushPointCloud(world_cloud.makeShared());
-
-//   tstampLastPclFused_ = (*image_msg).header.stamp;
-// }
 
 void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr& velodyne_msg)
 {
