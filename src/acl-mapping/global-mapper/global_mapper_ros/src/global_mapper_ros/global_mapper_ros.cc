@@ -496,9 +496,9 @@ void GlobalMapperRos::Publish(const ros::TimerEvent& event)
 
   if (publish_occupancy_grid_)
   {
-    sensor_msgs::PointCloud2 occ_pointcloud_msg;
-    PopulateOccupancyPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
-    occ_grid_pub_.publish(occ_pointcloud_msg);
+    // sensor_msgs::PointCloud2 occ_pointcloud_msg;
+    // PopulateOccupancyPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
+    // occ_grid_pub_.publish(occ_pointcloud_msg);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     // sensor_msgs::PointCloud2 occ_pointcloud_msg;
@@ -614,7 +614,11 @@ void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr&
       point.z = z;
       point.intensity = I;
       // point.intensity = 3.4;
-      cloud.push_back(point);
+      //  std::cout<< point.z << std::endl;
+      if(point.z>50.0){
+         cloud.push_back(point);
+      } 
+     
        }
   // std::cout<< "---------------------------" << cloud.size() << std::endl;
   const std::string target_frame = params_.global_frame;
@@ -647,7 +651,12 @@ void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr&
   sensor_msgs::PointCloud2 occ_pointcloud_msg;
   pcl::toROSMsg(world_cloud, occ_pointcloud_msg);
   // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
+  occ_pointcloud_msg.header.frame_id = "world";
+  occ_pointcloud_msg.header.stamp = tstampLastPclFused_;
   occ_grid_pub_.publish(occ_pointcloud_msg);
+
+  // pcl::toROSMsg(world_cloud, (*velodyne_msg));
+  // occ_grid_pub_.publish(*velodyne_msg);
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   tstampLastPclFused_ = (*velodyne_msg).header.stamp;

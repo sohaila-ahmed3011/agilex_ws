@@ -1,9 +1,0 @@
-[ 14%] Built target occupancy_grid
-[ 28%] Built target distance_grid
-[ 42%] Built target cost_grid
-[35m[1mScanning dependencies of target global_mapper[0m
-[ 50%] [32mBuilding CXX object CMakeFiles/global_mapper.dir/src/global_mapper/global_mapper.cc.o[0m
-[ 57%] [32m[1mLinking CXX shared library lib/libglobal_mapper.so[0m
-[ 57%] Built target global_mapper
-[ 64%] [32m[1mLinking CXX executable bin/global_mapper_tests[0m
-[100%] Built target global_mapper_tests
