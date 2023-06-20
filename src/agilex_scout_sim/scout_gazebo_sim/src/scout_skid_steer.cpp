@@ -19,7 +19,7 @@ ScoutSkidSteer::ScoutSkidSteer(ros::NodeHandle *nh, std::string robot_name)
   motor_fl_topic_ = robot_name_ + "/scout_motor_fl_controller/command";
   motor_rl_topic_ = robot_name_ + "/scout_motor_rl_controller/command";
   motor_rr_topic_ = robot_name_ + "/scout_motor_rr_controller/command";
-  cmd_topic_ = robot_name_ + "/JA01/cmd_vel";
+  cmd_topic_ = robot_name_ + "/cmd_vel";
 }
 
 void ScoutSkidSteer::SetupSubscription() {
