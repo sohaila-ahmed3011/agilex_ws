@@ -45,7 +45,7 @@ class GoalToCmdVel:
 
 
         #Publishers
-        self.pubCmdVel = rospy.Publisher('/JA01/cmd_vel', Twist, queue_size=1, latch=True)
+        self.pubCmdVel = rospy.Publisher('cmd_vel', Twist, queue_size=1, latch=True)
         self.pubState = rospy.Publisher('state', State, queue_size=1, latch=False)
 
         #Timers
