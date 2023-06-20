@@ -28,6 +28,14 @@
 #include "global_mapper/global_mapper.h"
 #include "global_mapper/params.h"
 
+///////////////////////////////////////
+// #include <pcl_conversions/pcl_conversions.h>
+// #include <pcl/point_types.h>
+// #include <pcl/PCLPointCloud2.h>
+// #include <pcl/conversions.h>
+// #include <pcl_ros/transforms.h>
+//////////////////////////////////////
+
 namespace global_mapper_ros
 {
 GlobalMapperRos::GlobalMapperRos()
@@ -496,9 +504,9 @@ void GlobalMapperRos::Publish(const ros::TimerEvent& event)
 
   if (publish_occupancy_grid_)
   {
-    // sensor_msgs::PointCloud2 occ_pointcloud_msg;
-    // PopulateOccupancyPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
-    // occ_grid_pub_.publish(occ_pointcloud_msg);
+    sensor_msgs::PointCloud2 occ_pointcloud_msg;
+    PopulateOccupancyPointCloudMsg(occupancy_grid, &occ_pointcloud_msg);
+    occ_grid_pub_.publish(occ_pointcloud_msg);
 
     /////////////////////////////////////////////////////////////////////////////////////////////////
     // sensor_msgs::PointCloud2 occ_pointcloud_msg;
@@ -593,33 +601,40 @@ void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr&
   }
 
   pcl::PointCloud<pcl::PointXYZI> cloud;
-  
+  pcl::fromROSMsg(*velodyne_msg, cloud);
+
+  // pcl::PCLPointCloud2 pcl_pc2;
+  // pcl_conversions::toPCL(*velodyne_msg,pcl_pc2);
+  // pcl::PointCloud<pcl::PointXYZI>::Ptr cloud(new pcl::PointCloud<pcl::PointXYZI>);
+  // pcl::fromPCLPointCloud2(pcl_pc2,*cloud);
+
+
   // std::cout << "velodyne msg: " << velodyne_msg->header.stamp << std::endl;
   // std::cout << "velodyne msg: " << velodyne_msg->data[0] << std::endl;
   // std::cout << "cloud: " << cloud << std::endl;
   // cloud.push_back(velodyne_msg);
 
-  for (uint j=0; j < velodyne_msg->height * velodyne_msg->width; j++){
-      float x = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[0].offset];
-      float y = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[1].offset];
-      float z = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[2].offset];
-      float I = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[3].offset];
-      // std::cout << "x: " << x << std::endl;
-      // std::cout << "y: " << y << std::endl;
-      // std::cout << "z: " << z << std::endl;
-      // std::cout << "I: " << I << std::endl;
-      pcl::PointXYZI point;
-      point.x = x;
-      point.y = y;
-      point.z = z;
-      point.intensity = I;
-      // point.intensity = 3.4;
-      //  std::cout<< point.z << std::endl;
-      if(point.z>50.0){
-         cloud.push_back(point);
-      } 
+  // for (uint j=0; j < velodyne_msg->height * velodyne_msg->width; j++){
+  //     float x = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[0].offset];
+  //     float y = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[1].offset];
+  //     float z = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[2].offset];
+  //     float I = velodyne_msg->data[j * velodyne_msg->point_step + velodyne_msg->fields[3].offset];
+  //     // std::cout << "x: " << x << std::endl;
+  //     // std::cout << "y: " << y << std::endl;
+  //     // std::cout << "z: " << z << std::endl;
+  //     // std::cout << "I: " << I << std::endl;
+  //     pcl::PointXYZI point;
+  //     point.x = x;
+  //     point.y = y;
+  //     point.z = z;
+  //     point.intensity = I;
+  //     // point.intensity = 3.4;
+  //     //  std::cout<< point.z << std::endl;
+  //     if(point.z>50.0){
+  //        cloud.push_back(point);
+  //     } 
      
-       }
+  //      }
   // std::cout<< "---------------------------" << cloud.size() << std::endl;
   const std::string target_frame = params_.global_frame;
   geometry_msgs::TransformStamped transform_stamped;
@@ -646,20 +661,20 @@ void GlobalMapperRos::VelodyneCallback(const sensor_msgs::PointCloud2::ConstPtr&
   // std::cout << "--------world_cloud-------->"<< world_cloud.size() << std::endl;
 
   global_mapper_ptr_->PushPointCloud(world_cloud.makeShared());
+  tstampLastPclFused_ = (*velodyne_msg).header.stamp;
 
   /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-  sensor_msgs::PointCloud2 occ_pointcloud_msg;
-  pcl::toROSMsg(world_cloud, occ_pointcloud_msg);
-  // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
-  occ_pointcloud_msg.header.frame_id = "world";
-  occ_pointcloud_msg.header.stamp = tstampLastPclFused_;
-  occ_grid_pub_.publish(occ_pointcloud_msg);
+  // sensor_msgs::PointCloud2 occ_pointcloud_msg;
+  // pcl::toROSMsg(cloud, occ_pointcloud_msg);
+  // // std::cout<< "================================occ_grid_pub_==================================================================" << std::endl;
+  // occ_pointcloud_msg.header.frame_id = velodyne_msg->header.frame_id;
+  // occ_pointcloud_msg.header.stamp = tstampLastPclFused_;
+  // occ_grid_pub_.publish(occ_pointcloud_msg);
 
   // pcl::toROSMsg(world_cloud, (*velodyne_msg));
   // occ_grid_pub_.publish(*velodyne_msg);
   ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-  tstampLastPclFused_ = (*velodyne_msg).header.stamp;
 }
 
 
