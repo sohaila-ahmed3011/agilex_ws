@@ -1,4 +1,5 @@
 *.so
 *.o
-# *.lp
+*.lp
 *.log
+*.pyc
