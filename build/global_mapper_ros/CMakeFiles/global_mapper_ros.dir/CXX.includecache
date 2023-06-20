@@ -241,6 +241,16 @@ global_mapper/global_mapper.h
 /home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper_ros/src/global_mapper_ros/global_mapper/global_mapper.h
 global_mapper/params.h
 /home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper_ros/src/global_mapper_ros/global_mapper/params.h
+pcl_conversions/pcl_conversions.h
+-
+pcl/point_types.h
+-
+pcl/PCLPointCloud2.h
+-
+pcl/conversions.h
+-
+pcl_ros/transforms.h
+-
 
 /home/ros/agile_x/src/acl-mapping/global-mapper/global_mapper_ros/src/global_mapper_ros/global_mapper_ros.h
 memory
