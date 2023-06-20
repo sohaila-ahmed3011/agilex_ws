@@ -6,7 +6,7 @@
     <arg name="z" default="0.0"/>
     <arg name="yaw" default="0.0"/>
 
-    <arg name="robot_namespace" default="/"/>
+    <arg name="robot_namespace" default="JA01"/>
 
     <!-- these are the arguments you can pass this launch file, for example paused:=true -->
     <arg name="paused" default="false" />
@@ -19,21 +19,30 @@
         <arg name="robot_namespace" value="$(arg robot_namespace)" />
     </include>
 
-    <node name="spawn_scout_model" pkg="gazebo_ros" type="spawn_model" args="-x $(arg x)
-              -y $(arg y)
-              -z $(arg z)
-              -Y $(arg yaw)
-              -unpause
-              -urdf
-              -param robot_description
-              -model 'scout$(arg robot_namespace)'" />
+    <node  name="spawn_scout_model" pkg="gazebo_ros" type="spawn_model" ns="$(arg robot_namespace)" args="-x $(arg x)
+            -y $(arg y)
+            -z $(arg z)
+            -Y $(arg yaw)
+            -unpause
+            -urdf
+            -param /$(arg robot_namespace)/robot_description
+            -model 'scout$(arg robot_namespace)'"/>
 
     <!-- Load joint controller configurations from YAML file to parameter server -->
-    <rosparam file="$(find scout_gazebo_sim)/config/scout_v2_control.yaml" command="load"/>
+    <rosparam ns="$(arg robot_namespace)" file="$(find scout_gazebo_sim)/config/scout_v2_control.yaml" command="load"/>
 
     <!-- load the controllers -->
-    <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="scout_state_controller scout_motor_fr_controller scout_motor_fl_controller scout_motor_rl_controller scout_motor_rr_controller"/>
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node ns="$(arg robot_namespace)" name="controller_spawner" pkg="controller_manager" type="spawner" respawn="true" output="screen" args="scout_state_controller scout_motor_fr_controller scout_motor_fl_controller scout_motor_rl_controller scout_motor_rr_controller"/>
+    
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" ns="$(arg robot_namespace)">
+        <!-- Add robot namespace to the robot model i,e. JA01 -->
+        <param name="tf_prefix"         value="$(arg robot_namespace)"/>           
+        <param name="robot_description" value="/$(arg robot_namespace)/robot_description"/>
+    </node>
+
+    <!-- <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" ns="$(arg robot_namespace)"/>
+        <param name="tf_prefix"         value="$(arg robot_namespace)"/>           
+        <param name="robot_description" value="/$(arg robot_namespace)/robot_description"/> -->
 
     <node name="scout_skid_steer_controller" pkg="scout_gazebo_sim" type="scout_skid_steer_controller">
         <param name="robot_namespace" type="string" value="$(arg robot_namespace)" />

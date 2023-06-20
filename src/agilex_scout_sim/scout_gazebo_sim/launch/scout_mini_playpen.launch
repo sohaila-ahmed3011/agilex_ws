@@ -23,13 +23,15 @@
       <!-- <remap from="/move_base_simple/goal" to="/$(arg ns)/goal"/> -->
     </node>
   </group>
+  
+   <!-- "Remap" to obtain JA01 and JA01/velodyne frames-->   
+    <node pkg="tf" type="static_transform_publisher" name="base_link_to_JA01" args="0 0 0 0 0 0 $(arg ns)/base_link $(arg ns) 1" />
+    <node pkg="tf" type="static_transform_publisher" name="static_map_odom_tf" ns="$(arg ns)"
+        args="0 0 0 0 0 0 world $(arg ns)/odom 1"/>
+    <!-- <node pkg="tf" type="static_transform_publisher" name="world_to_odom" args="0 0 0 0 0 0 world $(arg ns)/odom 1" /> -->
+    <!-- <node pkg="tf" type="static_transform_publisher" name="camera2body" args="0.25 0 0.184 -1.57 0 -1.57 $(arg ns) $(arg ns)/camera 1" /> 
+    <node pkg="tf" type="static_transform_publisher" name="base2JA01" args="0 0 0 0 0 0 $(arg ns)/base_link $(arg ns) 1" /> -->
 
-   <!-- "Remap" to obtain JA01 and JA01/velodyne frames-->    
-    <node pkg="tf" type="static_transform_publisher" name="odom_to_base_link" args="0 0 0.03 0 0 0 odom base_link 10" />
-    <node pkg="tf" type="static_transform_publisher" name="base_to_velodyne" args="0 0 0.03 0 0 0 base_link velodyne 10" />
-    <node pkg="tf" type="static_transform_publisher" name="base_link_to_world" args="0 0 0 0 0 0 base_link world 1" />
-    <node pkg="tf" type="static_transform_publisher" name="world_to_JA01" args="0 0 0 0 0 0 base_link $(arg ns) 1" />
-    
    <!-- Use ground truth from gazebo (note that all the nodes of nav.launch should be set to false if using this)-->
     <node ns="$(arg ns)" name="ground_truth_to_tf" pkg="message_to_tf" type="message_to_tf" output="screen">
       <param name="odometry_topic" value="ground_truth/state" />
