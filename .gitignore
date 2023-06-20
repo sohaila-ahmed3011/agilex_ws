@@ -3,3 +3,4 @@
 *.lp
 *.log
 *.pyc
+/lib
